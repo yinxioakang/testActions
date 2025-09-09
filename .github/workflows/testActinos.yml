@@ -7,6 +7,10 @@ on:
   pull_request:
     branches:
       - main
+  schedule:
+    - cron: '0 8 * * *'   # 早报
+    - cron: '0 12 * * *'  # 午报
+    - cron: '0 18 * * *'  # 晚报
   # workflow_dispatch:
   #   inputs:
   #     run_id:

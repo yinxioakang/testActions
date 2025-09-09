@@ -179,7 +179,7 @@ async function main() {
         }),
       },
       remark: {
-        value: `工作流执行成功！\n今日天气：${weather}`,
+        value: `今日天气：${weather}`,
       },
     };
 
