@@ -11,12 +11,12 @@ on:
     inputs:
       run_id:
         description: 'Run ID'
-        required: true
+        required: false
         type: string
         default: 'Test run_id'
       run_name:
         description: 'Run Name'
-        required: true
+        required: false
         type: string
         default: 'Test run_name'
 
@@ -36,7 +36,7 @@ jobs:
         run: npm install
 
       - name: Run Tests
-        run: node log
+        run: node log.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           run_id: ${{ github.event.inputs.run_id }}
