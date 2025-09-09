@@ -114,10 +114,12 @@ async function getWeather(city = '上海') {
 
   try {
     // 使用 OpenWeatherMap API
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric&lang=zh_cn`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
+      city
+    )}&appid=${apiKey}&units=metric&lang=zh_cn`;
     const response = await fetch(url);
     const data = await response.json();
-    
+
     if (data.cod === 200) {
       const temp = Math.round(data.main.temp);
       const desc = data.weather[0].description;
