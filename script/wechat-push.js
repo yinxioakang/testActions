@@ -162,7 +162,9 @@ async function main() {
     // const result = await wechatPush.sendMessage('Hello from GitHub Actions!', myOpenid);
 
     // 获取天气信息
+    console.log('开始获取天气信息...');
     const weather = await getWeather('上海');
+    console.log('获取到的天气信息:', weather);
 
     // 方式2: 发送模板消息（推荐）
     const templateId = process.env.TEMPLATE_ID;
