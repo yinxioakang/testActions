@@ -7,18 +7,16 @@ on:
   pull_request:
     branches:
       - main
-  workflow_dispatch:
-    inputs:
-      run_id:
-        description: 'Run ID'
-        required: false
-        type: string
-        default: 'Test run_id'
-      run_name:
-        description: 'Run Name'
-        required: false
-        type: string
-        default: 'Test run_name'
+  # workflow_dispatch:
+  #   inputs:
+  #     run_id:
+  #       description: 'Run ID'
+  #       required: true
+  #       type: string
+  #     run_name:
+  #       description: 'Run Name'
+  #       required: true
+  #       type: string
 
 jobs:
   test:
@@ -36,8 +34,13 @@ jobs:
         run: npm install
 
       - name: Run Tests
-        run: node log.js
+        run: npm run wechatpush
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          run_id: ${{ github.event.inputs.run_id }}
-          run_name: ${{ github.event.inputs.run_name }}
+          APP_ID: ${{ secrets.APP_ID }}
+          APP_SECRET: ${{ secrets.APP_SECRET }}
+          MY_OPENID: ${{ secrets.MY_OPENID }}
+          TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
+          WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+          GITHUB_WORKFLOW: ${{ github.workflow }}
+
+          # 0niO7lRJd6_C-oP-TAxK9AuQ_OoLppWnu4r5QtyS0Gg
