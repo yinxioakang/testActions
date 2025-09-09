@@ -105,7 +105,7 @@ class WechatPush {
   }
 }
 
-// 获取天气信息
+// 获取天气信息 - 使用 WeatherAPI
 async function getWeather(city = '上海') {
   const apiKey = process.env.WEATHER_API_KEY;
   if (!apiKey) {
@@ -113,17 +113,15 @@ async function getWeather(city = '上海') {
   }
 
   try {
-    // 使用 OpenWeatherMap API
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
-      city
-    )}&appid=${apiKey}&units=metric&lang=zh_cn`;
+    // 使用 WeatherAPI.com - 免费1百万次/月
+    const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${encodeURIComponent(city)}&lang=zh`;
     const response = await fetch(url);
     const data = await response.json();
 
-    if (data.cod === 200) {
-      const temp = Math.round(data.main.temp);
-      const desc = data.weather[0].description;
-      const feels_like = Math.round(data.main.feels_like);
+    if (response.ok && data.current) {
+      const temp = Math.round(data.current.temp_c);
+      const desc = data.current.condition.text;
+      const feels_like = Math.round(data.current.feelslike_c);
       return `${temp}°C ${desc} (体感${feels_like}°C)`;
     } else {
       return '天气信息获取失败';
